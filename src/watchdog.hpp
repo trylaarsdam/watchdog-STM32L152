@@ -16,7 +16,7 @@ void watchdogInit(uint32_t secondsToTimeout) {
 	//controller resets.
   IwdgHandle.Instance = IWDG;
 	IwdgHandle.Init.Prescaler = IWDG_PRESCALER_256;
-	IwdgHandle.Init.Reload    = (secondsToTimeout * kWatchdogPulsesPerSecond);
+	IwdgHandle.Init.Reload    = u_int32_t(4095 / kWatchdogPulsesPerSecond);
 
 	if(HAL_IWDG_Init(&IwdgHandle) != HAL_OK)
 	{

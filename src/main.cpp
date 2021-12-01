@@ -6,14 +6,14 @@ void setup() {
   // put your setup code here, to run once:
   pinMode(D8, OUTPUT);
   if(__HAL_RCC_GET_FLAG(RCC_FLAG_IWDGRST)) {
-    digitalWrite(D8, LOW);
+    digitalWrite(D8, HIGH);
   }
   else {
     digitalWrite(D8, LOW);
   }
   __HAL_RCC_CLEAR_RESET_FLAGS();
   pinMode(USER_BTN, INPUT);
-  watchdogInit(5);
+  watchdogInit(10);
 }
 
 void loop() {
