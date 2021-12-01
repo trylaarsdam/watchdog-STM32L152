@@ -2,6 +2,8 @@
 #include "watchdog.hpp"
 #include "stm32l1xx_hal_rcc.h"
 
+WatchDog watchdog;
+
 void setup() {
   // put your setup code here, to run once:
   pinMode(D8, OUTPUT);
@@ -13,14 +15,14 @@ void setup() {
   }
   __HAL_RCC_CLEAR_RESET_FLAGS();
   pinMode(USER_BTN, INPUT);
-  watchdogInit(10);
+  watchdog.init(10);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
 
   while(digitalRead(USER_BTN)) {
-    HAL_IWDG_Refresh(&IwdgHandle);
+    watchdog.pet();
   }
 
   while(1) {
