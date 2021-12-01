@@ -1,2 +1,2 @@
 #pragma once
-#define kWatchdogPulsesPerSecond 125
+#define kWatchdogPulsesPerSecond 155

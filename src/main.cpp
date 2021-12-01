@@ -19,11 +19,14 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
-  while(!digitalRead(USER_BTN)) {
-    watchdogPet();
+  while(digitalRead(USER_BTN)) {
+    HAL_IWDG_Refresh(&IwdgHandle);
   }
 
   while(1) {
-
+    digitalWrite(D8, HIGH);
+    delay(300);
+    digitalWrite(D8, LOW);
+    delay(300);
   }
 }

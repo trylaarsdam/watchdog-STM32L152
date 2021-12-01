@@ -11,12 +11,12 @@ void watchdogInit(uint32_t secondsToTimeout) {
 	//max watchdog value, we use the highest prescaler of 
 	//256 to get 32000 Hz / 256 = 125 Hz (watchdog clock pulses per second)
 	//we use the maximum reload value of 0x0FFF = 4095. 
-	//meaning that the watchdog has a max timeout of 4095 / 125 = 32.76 seconds.
+	//meaning that the watchdog has a max timeout of 4095 / 125 = 32.76 seconds. 
 	//If HAL_IWDG_Refresh() is not called before this timeout expires, the micro-
 	//controller resets.
   IwdgHandle.Instance = IWDG;
 	IwdgHandle.Init.Prescaler = IWDG_PRESCALER_256;
-	IwdgHandle.Init.Reload    = u_int32_t(4095 / kWatchdogPulsesPerSecond);
+	IwdgHandle.Init.Reload    = secondsToTimeout * kWatchdogPulsesPerSecond;
 
 	if(HAL_IWDG_Init(&IwdgHandle) != HAL_OK)
 	{
