@@ -6,10 +6,12 @@ void WatchDog::init(uint32_t secondsToTimeout) {
   IwdgHandle.Instance = IWDG;
 	IwdgHandle.Init.Prescaler = IWDG_PRESCALER_256;
 	IwdgHandle.Init.Reload    = secondsToTimeout * kWatchdogPulsesPerSecond;
+  HAL_IWDG_Init(&IwdgHandle);
 
 	if(HAL_IWDG_Init(&IwdgHandle) != HAL_OK)
 	{
 		/* Initialization Error */
+    digitalWrite(D4, HIGH);
 	}
 }
 
@@ -20,9 +22,9 @@ void WatchDog::pet() {
 bool WatchDog::isEnabled() {
   return watchdogEnabled;
   
-  HAL_FLASH_Unlock();
-  HAL_FLASH_OB_Unlock();
-  SET_BIT(FLASH->OPTR, FLASH_OPTR_nBOOT1_Msk); 
-  HAL_FLASH_OB_Lock();
-  HAL_FLASH_Lock();
+  // HAL_FLASH_Unlock();
+  // HAL_FLASH_OB_Unlock();
+   // SET_BIT(FLASH->OPTR, FLASH_OPTR_nBOOT1_Msk); 
+  // HAL_FLASH_OB_Lock();
+  // HAL_FLASH_Lock();
 }
