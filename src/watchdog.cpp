@@ -19,4 +19,10 @@ void WatchDog::pet() {
 
 bool WatchDog::isEnabled() {
   return watchdogEnabled;
+  
+  HAL_FLASH_Unlock();
+  HAL_FLASH_OB_Unlock();
+  SET_BIT(FLASH->OPTR, FLASH_OPTR_nBOOT1_Msk); 
+  HAL_FLASH_OB_Lock();
+  HAL_FLASH_Lock();
 }

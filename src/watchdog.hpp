@@ -1,8 +1,9 @@
 #pragma once
-#include <stm32l1xx.h>
-#include <stm32l1xx_hal_iwdg.h>
-#include <stm32l1xx_hal_wwdg.h>
+#include <stm32l4xx.h>
+#include <stm32l4xx_hal_iwdg.h>
+#include <stm32l4xx_hal_wwdg.h>
 #include "constants.hpp"
+#include <stm32l4xx_hal_flash.h> 
 
 #define kWatchdogPulsesPerSecond 155 // assuming LSE at 32.768kHz, prescaler = 256, 155 * seconds gives an accurate reload value
 
