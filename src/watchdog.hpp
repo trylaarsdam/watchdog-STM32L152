@@ -5,7 +5,7 @@
 #include "constants.hpp"
 #include <stm32l4xx_hal_flash.h> 
 
-#define kWatchdogPulsesPerSecond 125 // assuming LSE at 32.768kHz, prescaler = 256, 155 * seconds, 155 gives an accurate reload value
+#define kWatchdogPulsesPerSecond 128 // assuming LSE at 32.768kHz, prescaler = 256, 155 * seconds, 155 gives an accurate reload value
 
 class WatchDog {
     private:
@@ -16,7 +16,7 @@ class WatchDog {
         void pet();
 
         bool isEnabled();
-
+        void enableFreezeForShutdown();
         // void runWhileSleeping(bool yes = true);
         // void runWhileAtBreakpoint(bool yes = true);
 };

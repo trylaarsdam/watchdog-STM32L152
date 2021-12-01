@@ -6,6 +6,7 @@ void WatchDog::init(uint32_t secondsToTimeout) {
   IwdgHandle.Instance = IWDG;
 	IwdgHandle.Init.Prescaler = IWDG_PRESCALER_256;
 	IwdgHandle.Init.Reload    = secondsToTimeout * kWatchdogPulsesPerSecond;
+  IwdgHandle.Init.Window    = 0xFFF;
   HAL_IWDG_Init(&IwdgHandle);
 
 	if(HAL_IWDG_Init(&IwdgHandle) != HAL_OK)
@@ -21,10 +22,10 @@ void WatchDog::pet() {
 
 bool WatchDog::isEnabled() {
   return watchdogEnabled;
-  
-  // HAL_FLASH_Unlock();
-  // HAL_FLASH_OB_Unlock();
-   // SET_BIT(FLASH->OPTR, FLASH_OPTR_nBOOT1_Msk); 
-  // HAL_FLASH_OB_Lock();
-  // HAL_FLASH_Lock();
+}
+
+void WatchDog::enableFreezeForShutdown() {
+  // SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
+  // DBGMCU->CR = 0; // Disable debug, trace and IWDG
+  // // __DSB();
 }
