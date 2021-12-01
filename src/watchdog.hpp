@@ -7,17 +7,15 @@
 #define kWatchdogPulsesPerSecond 155 // assuming LSE at 32.768kHz, prescaler = 256, 155 * seconds gives an accurate reload value
 IWDG_HandleTypeDef IwdgHandle;
 
-void watchdogInit(uint32_t secondsToTimeout) {
-  IwdgHandle.Instance = IWDG;
-	IwdgHandle.Init.Prescaler = IWDG_PRESCALER_256;
-	IwdgHandle.Init.Reload    = secondsToTimeout * kWatchdogPulsesPerSecond;
+class WatchDog {
+    private:
+        bool watchdogEnabled = false;
+    public:
+        void init(uint32_t secondsToTimeout);
+        void pet();
 
-	if(HAL_IWDG_Init(&IwdgHandle) != HAL_OK)
-	{
-		/* Initialization Error */
-	}
-}
+        bool isEnabled();
 
-void watchdogPet() {
-  HAL_IWDG_Refresh(&IwdgHandle); // resets the IWDG counter back to 0
-}
+        // void runWhileSleeping(bool yes = true);
+        // void runWhileAtBreakpoint(bool yes = true);
+};
