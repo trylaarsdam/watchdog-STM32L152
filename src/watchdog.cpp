@@ -23,9 +23,3 @@ void WatchDog::pet() {
 bool WatchDog::isEnabled() {
   return watchdogEnabled;
 }
-
-void WatchDog::enableFreezeForShutdown() {
-  // SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
-  // DBGMCU->CR = 0; // Disable debug, trace and IWDG
-  // // __DSB();
-}

@@ -46,7 +46,7 @@ void loop() {
     digitalWrite(LED_PIN, HIGH);
     delay(300);
     digitalWrite(LED_PIN, LOW);
-    watchdog.enableFreezeForShutdown();
+    // watchdog.enableFreezeForShutdown();
     LowPower.shutdown(30000);
   }
 }

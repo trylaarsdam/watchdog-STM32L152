@@ -16,7 +16,6 @@ class WatchDog {
         void pet();
 
         bool isEnabled();
-        void enableFreezeForShutdown();
         // void runWhileSleeping(bool yes = true);
         // void runWhileAtBreakpoint(bool yes = true);
 };
